@@ -11,14 +11,19 @@
 </head>
 <body>
     <?php
+        $error="";
         include "../backend/task.php";
         include "../backend/addTask.php";
-        if( isset($_POST['addtaskbtn']) ){
+        if( isset($_POST['addtaskbtn']) ) {
             $taskname=$_POST['task_name'];
-             $task=new AddTask("",$taskname,"");
-            if($task->validationCheck()){
+             $task=new AddTask("",$taskname);
+             if( $task->validationCheck()==null ) {
                 $task->addTask();
-            }
+             } else {
+                $error=$task->validationCheck();
+                echo $error;
+             }
+              
         }
     ?>
     <div class="container">
