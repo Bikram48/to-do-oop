@@ -1,9 +1,9 @@
 <?php
     require_once "db_connect.php";
     class Task {
-        private $taskId;
-        private $taskName;
-        private $db_connection;
+        protected $taskId;
+        protected $taskName;
+        protected $db_connection;
         function __construct( $taskId,$taskName ) {
             $this->taskId = $taskId;
             $this->taskName = $taskName;

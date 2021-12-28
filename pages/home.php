@@ -10,15 +10,26 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+        include "../backend/task.php";
+        include "../backend/addTask.php";
+        if( isset($_POST['addtaskbtn']) ){
+            $taskname=$_POST['task_name'];
+             $task=new AddTask("",$taskname,"");
+            if($task->validationCheck()){
+                $task->addTask();
+            }
+        }
+    ?>
     <div class="container">
         <h2>To-Do Task App</h2>
-        <form>
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
             <div class="row">
                 <div class="col-xl-4">
                     <input type="text" placeholder="Enter task name" name="task_name"/>
                 </div>
                 <div class="col-xl-4">
-                    <input type="submit"/>
+                    <input type="submit" name="addtaskbtn"/>
                 </div>
             </div>
             <p id="error_display"></p>
