@@ -32,7 +32,7 @@
    <div class="container">
        <h2>Update Task Page</h2>
         <?php 
-            if( isset($_GET['id']) ){
+            if( isset($_GET['id']) ) {
                 $id=$_GET['id'];
                 $taskObj=new EditTask($id,"");
         ?>

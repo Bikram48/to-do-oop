@@ -41,7 +41,7 @@
             $query->execute();
         }
 
-        public function retrieveSingleTask(){
+        public function retrieveSingleTask() {
             $query = $this->db_connection->getDatabase()->prepare("SELECT * FROM todotask WHERE id=?");
             $query->bind_param( "i",$this->taskId );
             $query->bind_result( $id,$task_name );
