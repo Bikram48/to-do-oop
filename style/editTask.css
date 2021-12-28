@@ -1,0 +1,27 @@
+.container h2 {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+#error_display {
+  color: red;
+  font-size: 10px;
+  font-weight: bolder;
+}
+
+.container {
+  margin: auto;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+input[type="submit"] {
+  background-color: #4553b1;
+  border: none;
+  color: white;
+  font-weight: bold;
+  height: 40px;
+  width: 120px;
+  border-radius: 4px;
+  font-size: 12px;
+}
