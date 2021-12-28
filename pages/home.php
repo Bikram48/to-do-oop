@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="col-xl-2">
-                        <a href="edit_task.php"><i class="fas fa-edit" ></i></a>
+                        <a href="editTask.php?id=<?php echo $key; ?>"><i class="fas fa-edit" ></i></a>
                     </div>
                 </div>
                 <?php } ?>

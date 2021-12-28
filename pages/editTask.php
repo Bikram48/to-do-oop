@@ -10,19 +10,44 @@
     <title></title>
 </head>
 <body>
+    <?php
+        include "../backend/task.php";
+        include "../backend/editTask.php";
+        if( isset($_POST['update_btn']) ) {
+            $taskName=$_POST['taskname'];
+             $error="";
+            if( isset($_GET['id']) ) {
+                $id=$_GET['id'];
+                $taskObj=new EditTask( $id,$taskName );
+                if( $taskObj->validationCheck()==null ) {
+                    $taskObj->editTask();
+                    $taskObj->successMessage();
+                    header("Location:home.php");
+                } else {
+                    $error.=$taskObj->validationCheck();
+                }      
+            }
+        }
+    ?>
    <div class="container">
        <h2>Update Task Page</h2>
-       <form>
+        <?php 
+            if( isset($_GET['id']) ){
+                $id=$_GET['id'];
+                $taskObj=new EditTask($id,"");
+        ?>
+       <form action="editTask.php?id=<?php echo $id; ?>" method="POST">
            <div class="row">
                <div class="col-xl-4">
-                    <input type="text" name="taskname">
+                    <input type="text" name="taskname" value="<?php echo $taskObj->retrieveSingleTask(); ?>">
                </div>
                <div class="col-sm-4 col-xl-4">
                    <input type="submit" value="UPDATE" name="update_btn">
                </div>
            </div>
-           <p id="error_display"></p>
+           <p id="error_display"> <?php if( isset($error)) { echo $error; } ?></p>
        </form>
+        <?php } ?>
    </div>
 </body>
 </html>

@@ -36,8 +36,17 @@
         }
 
         public function editTask() {
-            $query = $this->db_connection->getDatabase()->prepare( "UPDATE FROM todotask SET taskname=? WHERE id=?" );
+            $query = $this->db_connection->getDatabase()->prepare( "UPDATE todotask SET taskname=? WHERE id=?" );
             $query->bind_param("si",$this->taskName,$this->taskId);
             $query->execute();
+        }
+
+        public function retrieveSingleTask(){
+            $query = $this->db_connection->getDatabase()->prepare("SELECT * FROM todotask WHERE id=?");
+            $query->bind_param( "i",$this->taskId );
+            $query->bind_result( $id,$task_name );
+            $query->execute();
+            $query->fetch();
+            return $task_name;
         }
     }
