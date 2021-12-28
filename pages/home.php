@@ -16,15 +16,15 @@
         include "../backend/addTask.php";
         if( isset($_POST['addtaskbtn']) ) {
             $taskname=$_POST['task_name'];
-             $task=new AddTask("",$taskname);
+             $task=new AddTask( "",$taskname );
              if( $task->validationCheck()==null ) {
                 $task->addTask();
+                $task->successMessage();
              } else {
-                $error=$task->validationCheck();
-                echo $error;
-             }
-              
+                $error.=$task->validationCheck();
+             }      
         }
+      
     ?>
     <div class="container">
         <h2>To-Do Task App</h2>
@@ -37,20 +37,28 @@
                     <input type="submit" name="addtaskbtn"/>
                 </div>
             </div>
-            <p id="error_display"></p>
+            <p id="error_display">
+                <?php if( isset($error)) { echo $error; } ?>
+            </p>
         </form>
         <form>
             <div class="form-group">
+                <?php 
+                    $taskObj=new AddTask( "","" );
+                    //$taskObj->retrieveTask();
+                    foreach( $taskObj->retrieveTask() as $key=>$value ) {
+                ?>
                 <div class="row">
-                    <div class="col-sm-offest-2">
+                    <div class="col-sm-offest-2 col-xl-4">
                         <div class="checkbox">
-                            <input type="checkbox" name="ids[]"><span id="taskname">Taskname1</span>
+                            <input type="checkbox" name="ids[]"><span id="taskname"><?php echo $value; ?></span>
                         </div>
                     </div>
                     <div class="col-xl-2">
                         <a href="edit_task.php"><i class="fas fa-edit" ></i></a>
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <input type="submit" value="DELETE SELECTED" name="delete_task_btn">
         </form>
