@@ -34,4 +34,10 @@
             $query->bind_param( "i",$this->taskId );
             $query->execute();
         }
+
+        public function editTask() {
+            $query = $this->db_connection->getDatabase()->prepare( "UPDATE FROM todotask SET taskname=? WHERE id=?" );
+            $query->bind_param("si",$this->taskName,$this->taskId);
+            $query->execute();
+        }
     }
