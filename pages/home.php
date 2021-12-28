@@ -11,7 +11,7 @@
 </head>
 <body>
     <?php
-        $error=$error1="";
+        $error = $error1 = "";
         include "../backend/task.php";
         include "../backend/addTask.php";
         include "../backend/removeTask.php";
@@ -27,7 +27,7 @@
                 $task->addTask();
                 $task->successMessage();
              } else {
-                $error.= $task->validationCheck();
+                $error .=  $task->validationCheck();
              }      
         }
 
@@ -36,8 +36,8 @@
                 $id = $_POST['ids'];
             }
             if( empty($id) ) {
-                $taskObj=new TaskRemover("","");
-                $error1.= $taskObj->getValidationError();
+                $taskObj = new TaskRemover("","");
+                $error1 .= $taskObj->getValidationError();
             } else {
                 foreach ( $id as $ids ){
                     $obj = new TaskRemover( $ids,"" );
@@ -65,9 +65,9 @@
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
             <div class="form-group">
                 <?php 
-                    $taskObj=new AddTask( "","" );
+                    $taskObj = new AddTask( "","" );
                     //$taskObj->retrieveTask();
-                    foreach( $taskObj->retrieveTask() as $key=>$value ) {
+                    foreach( $taskObj->retrieveTask() as $key => $value ) {
                 ?>
                 <div class="row">
                     <div class="col-sm-offest-2 col-xl-4">

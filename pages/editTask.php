@@ -14,17 +14,17 @@
         include "../backend/task.php";
         include "../backend/editTask.php";
         if( isset($_POST['update_btn']) ) {
-            $taskName=$_POST['taskname'];
-             $error="";
+            $taskName = $_POST['taskname'];
+             $error = "";
             if( isset($_GET['id']) ) {
-                $id=$_GET['id'];
-                $taskObj=new EditTask( $id,$taskName );
-                if( $taskObj->validationCheck()==null ) {
+                $id = $_GET['id'];
+                $taskObj = new EditTask( $id,$taskName );
+                if( $taskObj->validationCheck() == null ) {
                     $taskObj->editTask();
                     $taskObj->successMessage();
-                    header("Location:home.php?success=updateSuccess");
+                    header( "Location:home.php?success=updateSuccess" );
                 } else {
-                    $error.=$taskObj->validationCheck();
+                    $error .= $taskObj->validationCheck();
                 }      
             }
         }
@@ -33,8 +33,8 @@
        <h2>Update Task Page</h2>
         <?php 
             if( isset($_GET['id']) ) {
-                $id=$_GET['id'];
-                $taskObj=new EditTask($id,"");
+                $id = $_GET['id'];
+                $taskObj = new EditTask($id,"");
         ?>
        <form action="editTask.php?id=<?php echo $id; ?>" method="POST">
            <div class="row">
