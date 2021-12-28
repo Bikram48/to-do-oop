@@ -15,6 +15,11 @@
         include "../backend/task.php";
         include "../backend/addTask.php";
         include "../backend/removeTask.php";
+        include "../backend/editTask.php";
+        if( isset($_GET['success']) == "updateSuccess" ){
+             $obj = new EditTask( "","" );
+             $obj->successMessage();
+        }
         if( isset($_POST['addtaskbtn']) ) {
             $taskname = $_POST['task_name'];
              $task = new AddTask( "",$taskname );
@@ -40,8 +45,7 @@
                     $obj->successMessage();
                 }
             }
-        }
-      
+        } 
     ?>
     <div class="container">
         <h2>To-Do Task App</h2>

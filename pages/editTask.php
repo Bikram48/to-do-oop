@@ -22,7 +22,7 @@
                 if( $taskObj->validationCheck()==null ) {
                     $taskObj->editTask();
                     $taskObj->successMessage();
-                    header("Location:home.php");
+                    header("Location:home.php?success=updateSuccess");
                 } else {
                     $error.=$taskObj->validationCheck();
                 }      
