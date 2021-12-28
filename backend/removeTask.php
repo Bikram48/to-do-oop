@@ -4,12 +4,8 @@
             echo '<script type="text/javascript">alert("Selected task has been deleted successfully");</script>';
         }
 
-        public function validationCheck() {
-            if ( empty( $this->taskName ) ) {
-                return "field is empty";
-            }
-
-            return null;
+        public function getValidationError() {
+            return "Please select any task to perform this action";
         }
     }   
 ?>

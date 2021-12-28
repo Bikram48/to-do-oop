@@ -11,25 +11,34 @@
 </head>
 <body>
     <?php
-        $error="";
+        $error=$error1="";
         include "../backend/task.php";
         include "../backend/addTask.php";
+        include "../backend/removeTask.php";
         if( isset($_POST['addtaskbtn']) ) {
-            $taskname=$_POST['task_name'];
-             $task=new AddTask( "",$taskname );
-             if( $task->validationCheck()==null ) {
+            $taskname = $_POST['task_name'];
+             $task = new AddTask( "",$taskname );
+             if( $task->validationCheck() == null ) {
                 $task->addTask();
                 $task->successMessage();
              } else {
-                $error.=$task->validationCheck();
+                $error.= $task->validationCheck();
              }      
         }
 
         if( isset($_POST['delete_task_btn']) ) {
-            $id = $_POST['ids'];
-            foreach ( $id as $ids ){
-                $obj=new AddTask( $ids,"" );
-                $obj->deleteTask();
+            if( isset( $_POST['ids'] ) ) {
+                $id = $_POST['ids'];
+            }
+            if( empty($id) ) {
+                $taskObj=new TaskRemover("","");
+                $error1.= $taskObj->getValidationError();
+            } else {
+                foreach ( $id as $ids ){
+                    $obj = new TaskRemover( $ids,"" );
+                    $obj->deleteTask();
+                    $obj->successMessage();
+                }
             }
         }
       
@@ -69,6 +78,9 @@
                 <?php } ?>
             </div>
             <input type="submit" value="DELETE SELECTED" name="delete_task_btn">
+            <p id="error_display">
+                <?php if( isset($error1) ) { echo $error1; } ?>
+            </p>
         </form>
     </div>
 </body>
