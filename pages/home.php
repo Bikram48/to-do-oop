@@ -22,6 +22,21 @@
             </div>
             <p></p>
         </form>
+        <form>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-offest-2">
+                        <div class="checkbox">
+                            <input type="checkbox" name="ids[]">Taskname1
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <a href="edit_task.php"><i class="fas fa-edit" ></i></a>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="DELETE SELECTED" name="delete_task_btn">
+        </form>
     </div>
 </body>
 </html>
