@@ -18,14 +18,20 @@
         }
 
         public function retrieveTask() {
-            $query=$this->db_connection->getDatabase()->prepare("SELECT * FROM todotask");
+            $query = $this->db_connection->getDatabase()->prepare("SELECT * FROM todotask");
             $query->bind_result( $id,$task_name );
             $query->execute();
-            $data=array();
+            $data = array();
             while( $query->fetch() ) {
-                $data+=array($id=>$task_name); 
+                $data += array($id => $task_name); 
             }
 
             return $data;
+        }
+
+        public function deleteTask() {
+            $query = $this->db_connection->getDatabase()->prepare( "DELETE FROM todotask WHERE id=? ");
+            $query->bind_param( "i",$this->taskId );
+            $query->execute();
         }
     }

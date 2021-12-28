@@ -24,6 +24,14 @@
                 $error.=$task->validationCheck();
              }      
         }
+
+        if( isset($_POST['delete_task_btn']) ) {
+            $id = $_POST['ids'];
+            foreach ( $id as $ids ){
+                $obj=new AddTask( $ids,"" );
+                $obj->deleteTask();
+            }
+        }
       
     ?>
     <div class="container">
@@ -41,7 +49,7 @@
                 <?php if( isset($error)) { echo $error; } ?>
             </p>
         </form>
-        <form>
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
             <div class="form-group">
                 <?php 
                     $taskObj=new AddTask( "","" );
@@ -51,7 +59,7 @@
                 <div class="row">
                     <div class="col-sm-offest-2 col-xl-4">
                         <div class="checkbox">
-                            <input type="checkbox" name="ids[]"><span id="taskname"><?php echo $value; ?></span>
+                            <input type="checkbox" name="ids[]" value="<?php echo $key; ?>"><span id="taskname"><?php echo $value; ?></span>
                         </div>
                     </div>
                     <div class="col-xl-2">
